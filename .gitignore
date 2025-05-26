@@ -1,22 +1,80 @@
-### AL ###
-#Template for AL projects for Dynamics 365 Business Central
-#launch.json folder
-.vscode/
-#Cache folder
-.alcache/
-#Symbols folder
-.alpackages/
-#Snapshots folder
-.snapshots/
-#Testing Output folder
-.output/
-#Extension App-file
-*.app
-#Rapid Application Development File
-rad.json
-#Translation Base-file
-*.g.xlf
-#License-file
-*.flf
-#Test results file
-TestResults.xml
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X Growth Color Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .status {
+      margin: 15px 0;
+      font-size: 20px;
+    }
+    .buttons button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+    }
+    .red { background-color: red; }
+    .green { background-color: green; }
+    .blue { background-color: blue; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>X Growth Color Prediction Game</h2>
+    <div class="status" id="timer">Next round in: 60s</div>
+    <div class="status" id="balance">Balance: 1000 coins</div>
+    <div class="status" id="result">Result: -</div>
+    <div class="buttons">
+      <button class="red" onclick="selectColor('RED')">Red</button>
+      <button class="green" onclick="selectColor('GREEN')">Green</button>
+      <button class="blue" onclick="selectColor('BLUE')">Blue</button>
+    </div>
+  </div>  <script>
+    let selectedColor = null;
+    let balance = 1000;
+    let timeLeft = 60;
+
+    const timerText = document.getElementById('timer');
+    const balanceText = document.getElementById('balance');
+    const resultText = document.getElementById('result');
+
+    function selectColor(color) {
+      selectedColor = color;
+      alert(color + " selected");
+    }
+
+    function updateBalance(win) {
+      if (win) {
+        balance += 100;
+        alert("You won! +100 coins");
+      } else {
+        balance -= 100;
+        alert("You lost! -100 coins");
+      }
+      balanceText.innerText = "Balance: " + balance + " coins";
+    }
+
+    function startNewRound() {
+      timeLeft = 60;
+      const timer = setInterval(() => {
+        timeLeft--;
+       
